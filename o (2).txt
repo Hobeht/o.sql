@@ -1,0 +1,79 @@
+SELECT count(*)
+FROM O
+--1.
+
+select sum(*)
+from O
+where foldresz ="dél-amerika"
+--2.
+
+select count(*)
+from O
+where foldresz="Afrika"
+--3.
+
+select count(*)
+from O
+where foldresz="Afrika" and terulet<5000
+--4.
+
+
+select count(*)
+from O
+where foldresz="dél-amerika" and( terulet<25000 and  terulet>15000)
+--5.
+
+select sum(*)
+from O
+where( foldresz="Dél-amerika"or foldresz="észak-amerika"or foldresz="közép-amerika") and nepesseg>2000000
+--6.
+select nev
+from O
+where ( foldresz="Dél-amerika"or foldresz="észak-amerika"or foldresz="közép-amerika") and nepesseg>2000000
+--7.
+
+select min(nepesseg)
+from O
+--8.
+select min(nepesseg) ,terulet
+from O
+--9.
+
+select max(terulet/nepesseg*1000)
+from O
+--10.
+
+select max(terulet/nepesseg*1000),nepesseg,terulet
+from O
+--11.
+
+select distinct allamforma
+from O
+--12.
+
+select  allamforma,count(*)
+from O
+group by allamforma
+--13.
+
+select foldresz,count(*)
+from O
+group by foldresz
+--14.
+SELECT foldresz, allamforma, COUNT(*)
+FROM O
+GROUP BY foldresz, allamforma;
+--15.
+SELECT allamforma, SUM(nepesseg)
+FROM O
+GROUP BY allamforma;
+--16.
+SELECT foldresz, SUM(terulet)
+FROM O
+GROUP BY foldresz;
+--17.
+SELECT allamforma, nev
+FROM O
+GROUP BY allamforma
+HAVING nepesseg*1000/terulet = (SELECT MAX(nepesseg*1000/terulet) FROM O);
+--18.
